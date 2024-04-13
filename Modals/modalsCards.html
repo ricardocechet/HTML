@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desativar Eventos de Ponteiro</title>
+    <style>
+        body {
+            background-color: rgb(57, 57, 58);
+            color: white;
+            margin: 10px;
+            font: normal 14pt Arial;
+        } 
+        .card {
+            font: normal 14pt Arial;
+            background-color: rgb(31, 118, 31);
+            color: white;
+            width: 200px;
+            height: 200px;
+            margin: 20px;
+            text-align: center;
+        }
+
+        .container {
+            width: 100%; /* Define a largura da container */
+            max-width: 600px; /* Define uma largura máxima para evitar que o conteúdo se estenda indefinidamente */
+            margin: 0 auto; /* Margem automática na esquerda e direita para centralizar o conteúdo */
+            padding: 50px; /* Adiciona espaço interno ao redor do conteúdo */
+            box-sizing: border-box; /* Inclui padding e borda na largura total */
+            display: flex;
+            flex-wrap: wrap; /* Permite que os elementos se movam para a próxima linha quando necessário */
+            justify-content: center; /* Centraliza os elementos horizontalmente */
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Fundo ofuscado */
+            z-index: 999; /* Z-index alto para cobrir a página */
+        }
+        
+        .modal {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #6e8c72;
+            padding: 20px;
+            border-radius: 5px;
+            z-index: 1000; /* Z-index maior que o fundo ofuscado */
+        }
+    </style>
+    <script>
+        function abrirModal(e) {
+            switch (e) {
+                case "intro":
+                    document.getElementById('modal-overlay-intro').style.display = 'block';
+                    var divX = document.getElementById("modal-overlay-intro");
+                    divX.innerHTML = `
+                        <div class="modal">
+                            <h2>Intro</h2>
+                                <p>
+                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                                    Saepe sapiente aliquid, dolores alias velit itaque quasi 
+                                    quas dolorum voluptatem, soluta ratione fuga dolorem aperiam 
+                                    fugiat doloremque! Odit nobis ea ut!.
+                                </p>
+
+                                <p>
+                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                                    Saepe sapiente aliquid, dolores alias velit itaque quasi 
+                                    quas dolorum voluptatem, soluta ratione fuga dolorem aperiam 
+                                    fugiat doloremque! Odit nobis ea ut!.
+                                </p>
+                            <button onclick="fecharModal('intro')">Fechar</button>
+                        </div>
+                    `
+                    break;
+                    
+                case "empresa":
+                    document.getElementById('modal-overlay-empresa').style.display = 'block';
+                    var divX = document.getElementById("modal-overlay-empresa");
+                    divX.innerHTML = `
+                        <div class="modal">
+                            <h2>Modal Empresa</h2>
+                                <p>
+                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                                    Saepe sapiente aliquid, dolores alias velit itaque quasi 
+                                    quas dolorum voluptatem, soluta ratione fuga dolorem aperiam 
+                                    fugiat doloremque! Odit nobis ea ut!.
+                                </p>
+
+                                <p>
+                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                                    Saepe sapiente aliquid, dolores alias velit itaque quasi 
+                                    quas dolorum voluptatem, soluta ratione fuga dolorem aperiam 
+                                    fugiat doloremque! Odit nobis ea ut!.
+                                </p>
+                            <button onclick="fecharModal('empresa')">Fechar</button>
+                        </div>
+                    `
+                    break;
+
+                case "serviço":
+                    document.getElementById('modal-overlay-serviço').style.display = 'block';
+                    var divX = document.getElementById("modal-overlay-serviço");
+                    divX.innerHTML = `
+                        <div class="modal">
+                            <h2>Modal Serviço</h2>
+                            <p>
+                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                                    Saepe sapiente aliquid, dolores alias velit itaque quasi 
+                                    quas dolorum voluptatem, soluta ratione fuga dolorem aperiam 
+                                    fugiat doloremque! Odit nobis ea ut!.
+                                </p>
+
+                                <p>
+                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                                    Saepe sapiente aliquid, dolores alias velit itaque quasi 
+                                    quas dolorum voluptatem, soluta ratione fuga dolorem aperiam 
+                                    fugiat doloremque! Odit nobis ea ut!.
+                                </p>
+
+                            <button onclick="fecharModal('serviço')">Fechar</button>
+                        </div>
+                    `
+                    break;
+
+                case "contact":
+                    document.getElementById('modal-overlay-contact').style.display = 'block';
+                    var divX = document.getElementById("modal-overlay-contact");
+                    divX.innerHTML = `
+                        <div class="modal">
+                            <h2>Modal CONTACT</h2>
+                                <p>Dev: Ricardo Cechet</p>
+                                <p>email: ricardocechet@hotmail.com</p>
+
+                            <button onclick="fecharModal('contact')">Fechar</button>
+                        </div>
+                    `
+                    break;
+                
+                default:
+                    console.log(`modal-overlay-${e}`)
+                    document.getElementById(`modal-overlay-${e}`).style.display = 'block';
+                    var divX = document.getElementById(`modal-overlay-${e}`);
+                    console.log(divX.innerHTML)
+                    divX.innerHTML = `
+                        <div class="modal">
+                            <p>Página não existe:<br>(error: 404</p>
+
+                        </div>
+                    `
+                    break;
+            }
+        }
+        
+
+        function fecharModal(e) {
+            switch (e) {
+                case "intro":
+                    document.getElementById('modal-overlay-intro').style.display = 'none';
+                    break;
+                case "empresa":
+                    document.getElementById('modal-overlay-empresa').style.display = 'none';
+                    break;
+                case "serviço":
+                    document.getElementById('modal-overlay-serviço').style.display = 'none';
+                    break;
+                case "contact":
+                    document.getElementById('modal-overlay-contact').style.display = 'none';
+                    break;
+            }
+        }
+    </script>
+
+</head>
+<body>
+    <div id="main" class="container"></div>
+
+    <div class="container">
+        <div>
+            <div id="modal-overlay-intro" class="modal-overlay"></div> 
+            <div class="card" onclick="abrirModal('intro')">Abrir Modal de Introdução</div>
+            <br>
+        </div>
+
+        <div>
+            <div id="modal-overlay-empresa" class="modal-overlay"></div> 
+            <div class="card" onclick="abrirModal('empresa')">Abrir Modal de Contato</div>
+        </div>
+
+        <div>
+            <div id="modal-overlay-serviço" class="modal-overlay"></div> 
+            <div class="card" onclick="abrirModal('serviço')">Abrir Modal de Contato</div>
+        </div>
+
+        <div>
+            <div id="modal-overlay-contact" class="modal-overlay"></div> 
+            <div class="card" onclick="abrirModal('contact')">Abrir Modal de Contato</div>
+        </div>
+
+    </div>
+        
+</body>
+
+</html>
